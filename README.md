@@ -1,4 +1,4 @@
-# Analysing-Heart-Rate-Variability-
+### Analysing Heart Rate Variability
 ===================================
 
 
