@@ -1,6 +1,5 @@
 ﻿---
-author:
-- 
+
 ---
 
 Heart Rate Variability Analysis
@@ -13,7 +12,7 @@ which are used in most research studies of HRV analysis. The time-domain
 measures the change in normal R wave to normal R wave (NN) intervals
 over time and states the activity of circulation system.
 
-Statistical HRV Features {#features}
+Statistical HRV Features 
 ------------------------
 
 Seven commonly used statistical time-domain parameters which are
@@ -21,7 +20,7 @@ calculated from HRV segmentation during 5-minute recording windows
 comprised of RMSSD, SDNN, SDANN, SDANNi, SDSD, PNN50, and
 AutoCorrelation, are considered in this study. Each of these HRV
 assessment techniques is described in the following Table.
-
+<pre>
   **Parameter**     **Unit**   **Description**
   ----------------- ---------- ------------------------------------------------------
   RMSSD             ms         The root-mean-square of successive differences
@@ -33,3 +32,5 @@ assessment techniques is described in the following Table.
   AutoCorrelation              the correlation of successive intervals, called lags
 
   : Time domain measures of HRV[]{label="table:time-domain"}
+
+</pre>
