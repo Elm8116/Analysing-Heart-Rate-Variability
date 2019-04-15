@@ -1,14 +1,26 @@
-﻿### Analysing Heart Rate Variability
-===================================
+﻿---
+author:
+- 
+---
 
-Heart Rate Variability (HRV) is a physiological signal that reflect our ability to adapt to many stimuli including health condidions, physcial activity and stress. However, the mapping from stimulus to HRV response is highly variable from individual to individual, making its use as an input for predictive modelling a signiﬁcant challenge. While heart rate deﬁnes the number of beats per minute, HRV measures the variation between consecutive heartbeats (known as the RR interval) over short timescales. Near-constant intervals between consecutive heartbeats correspond to low HRV, while highly variable intervals between heartbeats correspond to high HRV. HRV is a useful metric to analyze the functioning of the autonomic nervous system (ANS), which regulates involuntary bodily functions and homeostasis, and is responsive to stress. Changes in the regulatory activity of the ANS are reﬂected in HRV, where high HRV reﬂects the better ability of the body to adapt to changing circumstances, and reduced HRV is associated with stress and slower recovery. 
+Heart Rate Variability Analysis
+-------------------------------
 
+Heart rate variability is evaluated by a number of methods which are
+categorized as time-domain, spectral or frequency domain, geometric, and
+nonlinear methods. This study concentrates on time-domain measurements,
+which are used in most research studies of HRV analysis. The time-domain
+measures the change in normal R wave to normal R wave (NN) intervals
+over time and states the activity of circulation system
+[@achten2003heart].
 
 Statistical HRV Features {#features}
 ------------------------
 
-Seven commonly used statistical time-domain parameters which are calculated from HRV
-segmentation during 5-minute recording windows comprised of RMSSD, SDNN, SDANN, SDANNi, SDSD,
+Seven commonly used statistical time-domain parameters
+[@camm1996heart][@stein1994heart] which are calculated from HRV
+segmentation during 5-minute recording windows as proposed in previous
+study [@malik1996heart], comprised of RMSSD, SDNN, SDANN, SDANNi, SDSD,
 PNN50, and AutoCorrelation, are considered in this study. Each of these
 HRV assessment techniques is described in Table
 [\[table:time-domain\]](#table:time-domain){reference-type="ref"
@@ -62,5 +74,3 @@ below is typically computed over a fixed-size window, e.g. 5 minutes.
 7.  AutoCorrelation $$\label{corr}
          \mathit{CORR} ( \tau ) =  \frac{ \sum_{i=1}^{N-\tau} (R_i - \overline{R})  (R_{i+\tau} -  \overline{R}) }{ \sum_{i=1}^N (R_i -  \overline{R})^2  }$$
     where $\tau$ is a time lag
-
- 	
