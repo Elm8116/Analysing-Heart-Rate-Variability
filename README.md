@@ -1,4 +1,7 @@
-﻿
+﻿---
+ 
+---
+
 Heart Rate Variability Analysis
 -------------------------------
 
@@ -7,15 +10,18 @@ categorized as time-domain, spectral or frequency domain, geometric, and
 nonlinear methods. This study concentrates on time-domain measurements,
 which are used in most research studies of HRV analysis. The time-domain
 measures the change in normal R wave to normal R wave (NN) intervals
-over time and states the activity of circulation system.
+over time and states the activity of circulation system
+[@achten2003heart].
 
-Statistical HRV Features
+Statistical HRV Features {#features}
 ------------------------
 
-Seven commonly used statistical time-domain parameters which are calculated from HRV
+Seven commonly used statistical time-domain parameters
+which are calculated from HRV
 segmentation during 5-minute recording windows comprised of RMSSD, SDNN, SDANN, SDANNi, SDSD,
 PNN50, and AutoCorrelation, are considered in this study. Each of these
-HRV assessment techniques is described in the following Table.
+HRV assessment techniques is described in the following Table:
+
 
   **Parameter**     **Unit**   **Description**
   ----------------- ---------- ------------------------------------------------------
@@ -27,5 +33,4 @@ HRV assessment techniques is described in the following Table.
   PNN50             \%         The percentage of differences greater than 50 (ms)
   AutoCorrelation              the correlation of successive intervals, called lags
 
-
-
+ 
