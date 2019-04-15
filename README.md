@@ -1,7 +1,4 @@
-﻿---
-
----
-
+﻿
 Heart Rate Variability Analysis
 ===============================
 
@@ -19,18 +16,16 @@ Seven commonly used statistical time-domain parameters which are
 calculated from HRV segmentation during 5-minute recording windows
 comprised of RMSSD, SDNN, SDANN, SDANNi, SDSD, PNN50, and
 AutoCorrelation, are considered in this study. Each of these HRV
-assessment techniques is described in the following Table.
+assessment techniques is described in the following table.
 <pre>
-  **Parameter**     **Unit**   **Description**
+  Parameter        Unit        Description
   ----------------- ---------- ------------------------------------------------------
   RMSSD             ms         The root-mean-square of successive differences
   SDNN              ms         The standard deviation
   SDANN             ms         The standard deviation of mean values of intervals
   SDANNi            ms         The mean standard deviation of intervals
   SDSD              ms         The standard deviation of differences
-  PNN50             \%         The percentage of differences greater than 50 (ms)
-  AutoCorrelation              the correlation of successive intervals, called lags
-
-  : Time domain measures of HRV[]{label="table:time-domain"}
-
+  PNN50             %          The percentage of differences greater than 50 (ms)
+  AutoCorrelation              The correlation of successive intervals, called lags
+ 
 </pre>
