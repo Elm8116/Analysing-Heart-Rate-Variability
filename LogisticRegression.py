@@ -18,13 +18,13 @@ stats.chisqprob = lambda chisq, df: stats.chi2.sf(chisq, df)
 data= pd.read_csv('../data-standard.csv')
 features = ['RMSSD', 'SDNN', 'SDANN', 'SDANNi', 'SDSD', 'pNN50', 'AutoCorrelation']
 
-data = shuffle(data)
-X, Y = np.array(data[features]), np.array(data['exam'])
-print 'Null accuracy exam:',max(data['exam'].mean(), 1-data['exam'].mean())
-# model= LogisticRegression(penalty='l2', C=0.93735159)
-model = smf.Logit(Y, data[features])
 
-result = model.fit()
+X, Y = np.array(data[features]), np.array(data['sleep'])
+print 'Null accuracy sleep:',max(data['sleep'].mean(), 1-data['sleep'].mean())
+
+model_stat = smf.Logit(Y, data[features])
+
+result = model_stat.fit()
 print(result.summary())
 # print result.params
 
@@ -39,7 +39,7 @@ cv = LeaveOneGroupOut().split(X, Y, grp)
 scores = []
 scores_2 =[]
 for train, test in logo.split(X, Y, grp):
-    model=LogisticRegression(penalty='l1', C=0.93735159)
+    model=LogisticRegression()
     x_train, x_test = X[train], X[test]
     y_train, y_test = Y[train], Y[test]
     model.fit(x_train, y_train.ravel())
@@ -47,11 +47,8 @@ for train, test in logo.split(X, Y, grp):
     scores.append(metrics.accuracy_score(y_test, model.predict(x_test)))
 
 print ("Logistic Regression Mean score: {0:.3f} (+/-{1:.3f})").format(np.mean(scores), np.std(scores))
-
-
 scores_cross = cross_val_score(model, X, Y, cv=10, scoring='accuracy')
 print('Logistic Regression Cross Validation Score: {0:.3f} (+/-{1:.3f})').format(np.mean(scores_cross), np.std(scores_cross))
-
 
 
 def conf_mat_logo_aggregated():
@@ -62,7 +59,7 @@ def conf_mat_logo_aggregated():
     ytt = []
     yee = []
     for train, test in logo.split(X, Y, grp):
-        model = LogisticRegression(penalty='l1', C=0.93735159)
+        model = LogisticRegression()
         x_train, x_test = X[train], X[test]
         y_train, y_test = Y[train], Y[test]
         model.fit(x_train, y_train)
