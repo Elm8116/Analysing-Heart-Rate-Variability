@@ -9,9 +9,11 @@ from pySOT import check_opt_prob
 from pySOT import *
 from poap.controller import SerialController, BasicWorkerThread
 import matplotlib.pyplot as plt
+from sklearn.model_selection import LeaveOneGroupOut
+from sklearn import metrics
 
+path = '../data-standard.csv'
 
-path = './data-standard.csv'
 features = ['RMSSD', 'SDNN', 'SDANN', 'SDANNi', 'SDSD', 'pNN50', 'AutoCorrelation']
 
 df = pd.read_csv(path)
@@ -30,14 +32,23 @@ class SVMOPT:
     def objfunction(self, x):
         kernel = {0: 'rbf', 1: 'linear', 2: 'sigmoid'}
         k = kernel[x[0]]
-        X, Y = df[xfeatures].values, df['sleep'].values
-        model = SVC(C=x[1], gamma=x[2], kernel=k)
-        x_train, x_test, y_train, y_test = train_test_split(X, Y, shuffle=True, test_size=int(0.2 * len(df)))
-        model.fit(x_train, y_train)
-        acc = accuracy_score(y_test, model.predict(x_test))
-        print(colored('Features:','blue'), colored(x,'green'))
-        print(colored('Accuracy:', 'green'), colored(acc * 100, 'blue'))
-        return 1 - acc
+        X, Y = df[features].values, df['exercise'].values
+
+        logo = LeaveOneGroupOut()
+        grp = df['id'].values
+        scores = []
+        for train, test in logo.split(X, Y, grp):
+
+            model = SVC(C=x[1], gamma=x[2], kernel=k)
+
+            x_train, x_test = X[train], X[test]
+            y_train, y_test = Y[train], Y[test]
+            model.fit(x_train, y_train)
+            scores.append(metrics.accuracy_score(y_test, model.predict(x_test)))
+
+        print colored('Features:', 'blue'), colored(x, 'green')
+        print colored('Accuracy:', 'green'), colored(np.mean(scores) * 100, 'blue')
+        return 1 - np.mean(scores)
 
 
 data = SVMOPT(dim=3)
@@ -48,7 +59,7 @@ maxeval = 500
 
 # (1) Optimization problem
 # Use our 10-dimensional function
-print(data.info)
+print data.info
 
 # (2) Experimental design
 # Use a symmetric Latin hypercube with 2d + 1 samples
@@ -76,10 +87,10 @@ controller.strategy = strategy
 result = controller.run()
 
 # Print the final result
-print('Best value found: {0}'.format(result.value))
-print('Best solution found: {0}'.format(
+print 'Best value found: {0}'.format(result.value)
+print 'Best solution found: {0}'.format(
     np.array_str(result.params[0], max_line_width=np.inf,
-                precision=5, suppress_small=True)))
+                precision=5, suppress_small=True))
 
 
 # Extract function values from the controller
