@@ -40,7 +40,6 @@ def comulative_time(data):
 
     data['five_minute'] = np.floor(data.minute / Const_GrpMinutes)
     data['caption_five_min']= (data.five_minute )* Const_GrpMinutes
-    # data.to_csv('./dataset/time402.csv')
     return data.five_minute
 
 
@@ -70,7 +69,7 @@ def RMSSD_Calculation(data):
     data['RR_sqdiff'] = pd.Series(RR_sqdiff)
     data['RMSSD'] = pd.Series(data.groupby('five_minute').RR_sqdiff.apply(sqrt))
 
-    return data.RMSSD.mean()
+    return data.RMSSD
 
 # /Standard Deviation of 5 minutes intervals/
 def SDNN_Calculation(data):
